@@ -1,0 +1,20 @@
+<ul class="list-unstyled">
+  <% tasklists.each do |tasklists| %>
+    <li class="media mb-3">
+      <div class="media-body">
+        <div>
+          <%= link_to tasks.user.name, user_path(tasks.user) %> <span class="text-muted">posted at <%= tasks.created_at %></span>
+        </div>
+        <div>
+          <p class="mb-o"><%= tasks.content %></p>
+        </div>
+        <div>
+          <% if current_user == tasks.user %>
+           <%=link_to"Delete",tasklist,method: :delete,data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate tasklists %>
+</ul>
