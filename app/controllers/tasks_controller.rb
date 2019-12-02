@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
     
   def index
-     @tasks = Task.where(user_id: session[:user_id])
+    @tasks =Task.all
   end
 
   def show
@@ -20,7 +20,6 @@ class TasksController < ApplicationController
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @task
     else
-     # @task = current_user.task.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end
@@ -55,7 +54,7 @@ class TasksController < ApplicationController
   # Strong Parameter
   
   def task_params
-    params.require(:task).permit(:content, :status, :user_id)
+    params.require(:Task).permit(:content, :status, :user_id)
   end
   
   def correct_user
