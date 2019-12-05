@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
     
   def index
-    @tasks =Task.all
+    @tasks =Task.where(user_id: session[:user_id])
   end
 
   def show
